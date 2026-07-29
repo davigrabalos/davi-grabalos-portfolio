@@ -1,0 +1,62 @@
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 1.5rem;
+  z-index: 100;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  align-items: center;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.col1 {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.col2 {
+  display: flex;
+  justify-content: flex-start;
+  font-weight: 600;
+}
+
+.col3 {
+  display: flex;
+  justify-content: flex-start;
+  gap: 1.5rem;
+}
+
+.col4 {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1.5rem;
+}
+
+.logo {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  letter-spacing: -0.05em;
+  font-size: 3rem;
+  line-height: 0.8;
+  color: var(--accent-red);
+}
+
+.logoWord {
+  display: inline-block;
+}
+
+.logoWord::first-letter {
+  font-style: italic;
+}
+
+.link {
+  transition: opacity 0.2s;
+}
+
+.link:hover {
+  opacity: 0.6;
+}
