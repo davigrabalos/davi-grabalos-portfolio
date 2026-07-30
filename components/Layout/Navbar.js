@@ -1,11 +1,26 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { TransitionLink } from "@/components/UI/TransitionProvider";
 import styles from "./Navbar.module.css";
 
 export default function Navbar() {
   const [time, setTime] = useState("");
+  const [isGlitching, setIsGlitching] = useState(false);
+  const pathname = usePathname();
+  const isAbout = pathname === "/about";
+  const isHome = pathname === "/";
+
+  useEffect(() => {
+    if (isHome) {
+      setIsGlitching(true);
+      const timer = setTimeout(() => {
+        setIsGlitching(false);
+      }, 500);
+      return () => clearTimeout(timer);
+    }
+  }, [isHome]);
 
   useEffect(() => {
     const updateTime = () => {
@@ -22,23 +37,21 @@ export default function Navbar() {
 
   return (
     <nav className={styles.navbar}>
-      <div className={styles.col1}>
-        <Link href="/" className={styles.logo}>
+      <div className={`${styles.col1} ${isAbout ? styles.hiddenLogo : ""}`}>
+        <TransitionLink href="/" className={`${styles.logo} ${isGlitching ? styles.logoGlitch : ""}`}>
           <span className={styles.logoWord}>DAVI</span> <span className={styles.logoWord}>GRABALOS.</span>
-        </Link>
+        </TransitionLink>
       </div>
       <div className={styles.col2}>
         {time}
       </div>
       <div className={styles.col3}>
-        <Link href="#projects" className={styles.link}>Projects</Link>
-        <Link href="#journal" className={styles.link}>Journal</Link>
-        <Link href="#information" className={styles.link}>Information</Link>
-        <Link href="#careers" className={styles.link}>Careers</Link>
+        <TransitionLink href="/projects" className={styles.link}>Projects</TransitionLink>
+        <TransitionLink href="/about" className={styles.link}>About</TransitionLink>
       </div>
       <div className={styles.col4}>
-        <a href="mailto:email@bodeyco.com" className={styles.link}>Email</a>
-        <a href="#" className={styles.link}>Instagram</a>
+        <a href="mailto:davigrabalos@gmail.com" className={styles.link}>Email</a>
+        <a href="https://instagram.com/davigrabalos" target="_blank" rel="noopener noreferrer" className={styles.link}>Instagram</a>
       </div>
     </nav>
   );

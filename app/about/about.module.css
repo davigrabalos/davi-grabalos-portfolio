@@ -1,0 +1,157 @@
+.container {
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.bgWrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.bgImageContainer {
+  position: absolute;
+  top: -25px;
+  left: -25px;
+  width: calc(100% + 50px);
+  height: calc(100% + 50px);
+  opacity: 1;
+}
+
+
+
+.content {
+  position: relative;
+  padding: 8rem 4rem 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.hero {
+  margin-bottom: auto;
+}
+
+.logoLink {
+  display: inline-block;
+  text-decoration: none;
+  transition: opacity 0.2s ease;
+}
+
+.logoLink:hover {
+  opacity: 0.7;
+}
+
+.aboutLogoTitle {
+  font-family: var(--font-serif);
+  font-size: clamp(3rem, 6vw, 6rem);
+  font-weight: 400;
+  line-height: 0.9;
+  letter-spacing: -0.05em;
+  color: var(--accent-red);
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+}
+
+.word {
+  display: inline-block;
+}
+
+.word::first-letter {
+  font-style: italic;
+}
+
+.subtitle {
+  font-size: 1.25rem;
+  max-width: 800px;
+  line-height: 1.5;
+  font-weight: 300;
+  color: #ffffff;
+  mix-blend-mode: difference;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.heading {
+  font-family: var(--font-serif);
+  font-size: 1.5rem;
+  font-weight: 400;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid rgba(240, 237, 233, 0.15);
+  padding-bottom: 0.75rem;
+  color: #ffffff;
+  mix-blend-mode: difference;
+}
+
+.heading::first-letter {
+  font-style: italic;
+}
+
+.list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  font-size: 1.1rem;
+  color: #ffffff;
+  mix-blend-mode: difference;
+}
+
+.text {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: #ffffff;
+  mix-blend-mode: difference;
+}
+
+.link {
+  color: #ffffff;
+  transition: opacity 0.2s ease;
+  mix-blend-mode: difference;
+  display: inline-block;
+}
+
+.link:hover {
+  opacity: 0.7;
+}
+
+.footer {
+  padding-top: 1rem;
+  border-top: 1px solid rgba(240, 237, 233, 0.15);
+}
+
+.backLink {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #ffffff;
+  transition: opacity 0.2s ease;
+  mix-blend-mode: difference;
+  display: inline-block;
+}
+
+.backLink:hover {
+  opacity: 0.7;
+}
+
+@media (max-width: 768px) {
+  .content {
+    padding: 8rem 2rem 4rem;
+  }
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+}

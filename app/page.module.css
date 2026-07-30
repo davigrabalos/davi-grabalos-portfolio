@@ -6,6 +6,7 @@
   justify-content: center;
   position: relative;
   background-color: var(--background);
+  overflow: hidden;
 }
 
 .counter {
@@ -32,5 +33,65 @@
   position: relative;
   width: 60vw;
   height: 60vh;
-  overflow: hidden;
+  overflow: visible;
+  z-index: 1;
+}
+
+.backgroundTextContainer {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+@keyframes portifolio-glitch {
+  0% { text-shadow: 8px 0 #d10026, -8px 0 #0022FF; transform: translate(4px, 0); }
+  20% { text-shadow: -8px 0 #d10026, 8px 0 #0022FF; transform: translate(-4px, 0); }
+  40% { text-shadow: 10px 0 #d10026, -10px 0 #0022FF; transform: translate(6px, 0); }
+  60% { text-shadow: -10px 0 #d10026, 10px 0 #0022FF; transform: translate(-6px, 0); }
+  80% { text-shadow: 6px 0 #d10026, -6px 0 #0022FF; transform: translate(4px, 0); }
+  100% { text-shadow: -6px 0 #d10026, 6px 0 #0022FF; transform: translate(0, 0); }
+}
+
+.backgroundTextIntro {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  font-size: clamp(3rem, 10vw, 12rem);
+  letter-spacing: 0.12em;
+  color: var(--foreground);
+  opacity: 1;
+  user-select: none;
+  white-space: nowrap;
+  filter: url(#intro-melt-text);
+}
+
+.backgroundTextIntro::first-letter {
+  font-style: italic;
+}
+
+.backgroundTextHuge {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: clamp(8rem, 20vw, 25rem);
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  color: var(--foreground);
+  opacity: 0.03;
+  user-select: none;
+  white-space: nowrap;
+}
+
+.gradientOrb {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 150vw;
+  height: 150vw;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(17,17,17, 0.05) 0%, rgba(17,17,17, 0) 60%);
+  pointer-events: none;
+  z-index: 0;
+  transform: translate(-50%, -50%);
 }

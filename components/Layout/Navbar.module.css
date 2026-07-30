@@ -3,7 +3,7 @@
   top: 0;
   left: 0;
   width: 100%;
-  padding: 1.5rem;
+  padding: 1.5rem 2rem 2.5rem;
   z-index: 100;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
@@ -45,12 +45,33 @@
   color: var(--accent-red);
 }
 
+.logoGlitch {
+  animation: logo-glitch-anim 0.1s infinite;
+  color: #d10026;
+}
+
+@keyframes logo-glitch-anim {
+  0% { text-shadow: 4px 0 #d10026, -4px 0 #0022FF; transform: translate(2px, 0); }
+  20% { text-shadow: -4px 0 #d10026, 4px 0 #0022FF; transform: translate(-2px, 0); }
+  40% { text-shadow: 5px 0 #d10026, -5px 0 #0022FF; transform: translate(3px, 0); }
+  60% { text-shadow: -5px 0 #d10026, 5px 0 #0022FF; transform: translate(-3px, 0); }
+  80% { text-shadow: 3px 0 #d10026, -3px 0 #0022FF; transform: translate(2px, 0); }
+  100% { text-shadow: -3px 0 #d10026, 3px 0 #0022FF; transform: translate(0, 0); }
+}
+
 .logoWord {
   display: inline-block;
 }
 
 .logoWord::first-letter {
   font-style: italic;
+}
+
+.hiddenLogo {
+  opacity: 0;
+  pointer-events: none;
+  visibility: hidden;
+  transition: opacity 0.2s ease, visibility 0.2s ease;
 }
 
 .link {

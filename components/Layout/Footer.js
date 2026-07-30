@@ -1,6 +1,23 @@
+"use client";
+
+import { useState } from "react";
 import styles from "./Footer.module.css";
 
 export default function Footer({ project }) {
+  const [email, setEmail] = useState("");
+  const [subscribed, setSubscribed] = useState(false);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (email.trim()) {
+      setSubscribed(true);
+      setTimeout(() => {
+        setSubscribed(false);
+        setEmail("");
+      }, 3500);
+    }
+  };
+
   return (
     <footer className={styles.footer}>
       <div className={styles.col1}>
@@ -14,7 +31,25 @@ export default function Footer({ project }) {
         )}
       </div>
       <div className={styles.col3}>
-        <span className={styles.email}>Email</span> <strong className={styles.strong}>Subscribe to Newsletter</strong>
+        <form onSubmit={handleSubmit} className={styles.form}>
+          {subscribed ? (
+            <span className={styles.success}>Thanks for subscribing!</span>
+          ) : (
+            <>
+              <input
+                type="email"
+                placeholder="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className={styles.emailInput}
+                required
+              />
+              <button type="submit" className={styles.submitBtn}>
+                Subscribe to Newsletter
+              </button>
+            </>
+          )}
+        </form>
       </div>
     </footer>
   );

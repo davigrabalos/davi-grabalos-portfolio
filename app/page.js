@@ -10,12 +10,12 @@ function formatName(str) {
 }
 
 export default function Home() {
-  const imagesDir = path.join(process.cwd(), 'public/images');
+  const imagesDir = path.join(process.cwd(), 'public/images/projectspics');
   let files = [];
   try {
     files = fs.readdirSync(imagesDir);
   } catch (e) {
-    console.error("Folder public/images not found");
+    console.error("Folder public/images/projectspics not found");
   }
   
   const projects = files
@@ -32,7 +32,7 @@ export default function Home() {
         id: index + 1,
         brand: formatName(brandPart),
         collection: formatName(collectionPart),
-        image: encodeURI(`/images/${file}`)
+        image: encodeURI(`/images/projectspics/${file}`)
       };
     });
 

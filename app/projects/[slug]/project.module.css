@@ -1,0 +1,113 @@
+.container {
+  min-height: 100vh;
+  padding: 10rem 4rem 6rem;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 4rem;
+  border-bottom: 1px solid rgba(240, 237, 233, 0.15);
+  padding-bottom: 3rem;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+
+.tag {
+  font-size: 0.85rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--accent-red);
+  font-weight: 600;
+  display: block;
+  margin-bottom: 0.75rem;
+}
+
+.title {
+  font-family: var(--font-serif);
+  font-size: clamp(3.5rem, 7vw, 6rem);
+  font-weight: 400;
+  line-height: 1;
+  margin-bottom: 0.5rem;
+}
+
+.title::first-letter {
+  font-style: italic;
+}
+
+.collection {
+  font-size: 1.5rem;
+  opacity: 0.6;
+  font-weight: 300;
+  font-family: var(--font-mono);
+}
+
+.specs {
+  display: flex;
+  gap: 3rem;
+}
+
+.specItem {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.label {
+  font-size: 0.85rem;
+  opacity: 0.5;
+  text-transform: uppercase;
+}
+
+.value {
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.mediaContainer {
+  width: 100%;
+  margin-bottom: 6rem;
+}
+
+.mainImageWrapper {
+  position: relative;
+  width: 100%;
+  height: 70vh;
+}
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(240, 237, 233, 0.1);
+}
+
+.backLink, .homeLink {
+  font-size: 1rem;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.backLink:hover, .homeLink:hover {
+  color: var(--accent-red);
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 8rem 2rem 4rem;
+  }
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .specs {
+    gap: 1.5rem;
+  }
+  .mainImageWrapper {
+    height: 50vh;
+  }
+}

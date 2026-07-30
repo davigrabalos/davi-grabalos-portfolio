@@ -11,9 +11,9 @@ export default function CustomCursor() {
     const cursor = cursorRef.current;
     if (!cursor) return;
 
-    // Movimentação suave com GSAP quickTo
-    const xTo = gsap.quickTo(cursor, "x", { duration: 0.15, ease: "power3" });
-    const yTo = gsap.quickTo(cursor, "y", { duration: 0.15, ease: "power3" });
+    // Movimentação ultra-suave e responsiva com GSAP quickTo
+    const xTo = gsap.quickTo(cursor, "x", { duration: 0.04, ease: "power3" });
+    const yTo = gsap.quickTo(cursor, "y", { duration: 0.04, ease: "power3" });
 
     const handleMouseMove = (e) => {
       xTo(e.clientX);
@@ -28,21 +28,31 @@ export default function CustomCursor() {
       gsap.to(cursor, { scale: 1, duration: 0.2 });
     };
 
-    window.addEventListener("mousemove", handleMouseMove);
+    const handleMouseOver = (e) => {
+      if (e.target.closest("a, button, [role='button'], .clickable")) {
+        gsap.to(cursor, { scale: 3, duration: 0.2 });
+      }
+    };
 
-    // Adiciona o efeito de expansão ao passar por links ou botões
-    const interactives = document.querySelectorAll("a, button, [role='button'], .clickable");
-    interactives.forEach((el) => {
-      el.addEventListener("mouseenter", handleMouseEnterInteractive);
-      el.addEventListener("mouseleave", handleMouseLeaveInteractive);
-    });
+    const handleMouseOut = (e) => {
+      // Quando sai de um elemento interativo, verificamos se não está entrando em outro
+      const leftElement = e.target.closest("a, button, [role='button'], .clickable");
+      if (leftElement) {
+        const enteringElement = e.relatedTarget?.closest?.("a, button, [role='button'], .clickable");
+        if (!enteringElement) {
+          gsap.to(cursor, { scale: 1, duration: 0.2 });
+        }
+      }
+    };
+
+    window.addEventListener("mousemove", handleMouseMove);
+    window.addEventListener("mouseover", handleMouseOver);
+    window.addEventListener("mouseout", handleMouseOut);
 
     return () => {
       window.removeEventListener("mousemove", handleMouseMove);
-      interactives.forEach((el) => {
-        el.removeEventListener("mouseenter", handleMouseEnterInteractive);
-        el.removeEventListener("mouseleave", handleMouseLeaveInteractive);
-      });
+      window.removeEventListener("mouseover", handleMouseOver);
+      window.removeEventListener("mouseout", handleMouseOut);
     };
   }, []);
 
