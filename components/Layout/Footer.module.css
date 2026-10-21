@@ -95,3 +95,10 @@
   font-weight: 600;
   color: var(--accent-red);
 }
+
+/* ─── Mobile: hide footer — bottom tab bar handles nav ─── */
+@media (max-width: 768px) {
+  .footer {
+    display: none;
+  }
+}

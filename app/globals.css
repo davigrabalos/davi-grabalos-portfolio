@@ -22,15 +22,16 @@ html, body {
   font-weight: 200;
   scroll-behavior: smooth;
   -webkit-font-smoothing: antialiased;
+  /* Prevent overscroll/bounce on iOS */
+  overscroll-behavior: none;
 }
-
-
 
 ::selection {
   background-color: var(--accent-red);
   color: #ffffff;
 }
 
+/* Hide system cursor only on desktop (fine pointer = mouse) */
 @media (pointer: fine) {
   *, body, a, button {
     cursor: none !important;
@@ -48,6 +49,7 @@ a {
   text-decoration: none;
 }
 
+/* Edge blur overlays */
 .edgeBlurTop {
   position: fixed;
   top: 0;
@@ -74,4 +76,11 @@ a {
   -webkit-backdrop-filter: blur(8px);
   mask-image: linear-gradient(to top, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 100%);
   -webkit-mask-image: linear-gradient(to top, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 100%);
+}
+
+/* On mobile hide the bottom edge blur — bottom bar sits there instead */
+@media (max-width: 768px) {
+  .edgeBlurBottom {
+    display: none;
+  }
 }
