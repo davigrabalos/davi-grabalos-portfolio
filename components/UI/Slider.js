@@ -4,6 +4,7 @@ import { useState, useRef, useEffect, useCallback } from "react";
 import Image from "next/image";
 import gsap from "gsap";
 import Footer from "@/components/Layout/Footer";
+import { TransitionLink } from "@/components/UI/TransitionProvider";
 import styles from "@/app/page.module.css";
 
 export default function Slider({ projects }) {
@@ -122,6 +123,8 @@ export default function Slider({ projects }) {
   const totalProjects = String(projects.length).padStart(3, "0");
   const currentProjectNum = String(currentIndex + 1).padStart(3, "0");
   const activeProject = projects[currentIndex];
+  // Opens the collection page scrolled to this project's section
+  const projectHref = `${activeProject.href}#${activeProject.slug}`;
   const nextProjectIndex = (currentIndex + 1) % projects.length;
   const nextProject = projects[nextProjectIndex];
 
@@ -160,21 +163,29 @@ export default function Slider({ projects }) {
             ref={imageWrapperRef}
             style={{ width: "100%", height: "100%", position: "relative" }}
           >
-            <Image
-              src={activeProject.image}
-              alt={activeProject.brand}
-              fill
-              style={{ objectFit: "contain" }}
-              quality={100}
-              priority
-            />
+            <TransitionLink
+              href={projectHref}
+              className={styles.imageLink}
+              aria-label={`Open ${activeProject.brand}`}
+            >
+              <Image
+                src={activeProject.image}
+                alt={activeProject.brand}
+                fill
+                style={{ objectFit: "contain" }}
+                quality={100}
+                priority
+              />
+            </TransitionLink>
           </div>
         </div>
 
         {/* Project title overlay — bottom left */}
         <div className={styles.projectInfo}>
-          <h2 className={styles.projectBrand}>{activeProject.brand}</h2>
-          <p className={styles.projectCollection}>{activeProject.collection}</p>
+          <TransitionLink href={projectHref} className={styles.projectLink}>
+            <h2 className={styles.projectBrand}>{activeProject.brand}</h2>
+            <p className={styles.projectCollection}>{activeProject.collection}</p>
+          </TransitionLink>
         </div>
 
         {/* Scroll hint arrows */}

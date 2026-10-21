@@ -46,6 +46,12 @@
   z-index: 1;
 }
 
+.imageLink {
+  position: absolute;
+  inset: 0;
+  display: block;
+}
+
 /* ─── Project info overlay (bottom-left) ─── */
 .projectInfo {
   position: absolute;
@@ -53,6 +59,15 @@
   left: 1.75rem;
   z-index: 10;
   pointer-events: none;
+}
+
+.projectLink {
+  display: block;
+  pointer-events: auto;
+}
+
+.projectLink:hover .projectBrand {
+  color: var(--accent-red);
 }
 
 .projectBrand {
@@ -63,6 +78,7 @@
   line-height: 0.9;
   letter-spacing: -0.02em;
   color: var(--foreground);
+  transition: color 0.2s ease;
   margin: 0;
 }
 
