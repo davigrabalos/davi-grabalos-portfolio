@@ -147,8 +147,15 @@
 }
 
 @media (max-width: 768px) {
+  .container {
+    height: auto;
+    min-height: 100vh;
+    overflow-y: visible;
+  }
   .content {
-    padding: 8rem 2rem 4rem;
+    height: auto;
+    min-height: 100vh;
+    padding: 7rem 1.5rem calc(6rem + env(safe-area-inset-bottom, 0px));
   }
   .grid {
     grid-template-columns: 1fr;
