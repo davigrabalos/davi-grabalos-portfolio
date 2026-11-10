@@ -1,0 +1,146 @@
+.section {
+  position: relative;
+  padding: 18vh var(--gutter) 12vh;
+}
+
+.head {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--ink);
+}
+
+.heading {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(3rem, 11vw, 11rem);
+  line-height: 0.9;
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+}
+
+.row {
+  position: relative;
+  border-bottom: 1px solid var(--line);
+  overflow: hidden;
+}
+
+.fill {
+  position: absolute;
+  inset: 0;
+  background: var(--accent);
+  transform: scaleY(0);
+}
+
+.link {
+  position: relative;
+  display: grid;
+  grid-template-columns: 3rem minmax(0, 1.6fr) minmax(0, 1fr) minmax(0, 1.1fr) 4rem 2rem;
+  align-items: center;
+  gap: 16px;
+  padding: clamp(20px, 3vw, 36px) 0;
+  color: var(--ink);
+}
+
+.title {
+  display: inline-block;
+  font-size: clamp(1.5rem, 3.2vw, 3rem);
+  font-weight: 500;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+}
+
+.index,
+.role,
+.stack,
+.year {
+  opacity: 0.65;
+}
+
+.role {
+  font-size: 1rem;
+}
+
+.year {
+  text-align: right;
+}
+
+.arrow {
+  display: inline-block;
+  justify-self: end;
+  font-size: 1.5rem;
+  line-height: 1;
+}
+
+.preview {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: clamp(220px, 22vw, 360px);
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  border-radius: 6px;
+  pointer-events: none;
+  z-index: 5;
+  visibility: hidden;
+}
+
+.track {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.slide {
+  flex: 0 0 100%;
+  display: grid;
+  place-items: center;
+  color: var(--paper);
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  background-image: radial-gradient(rgba(249, 246, 234, 0.18) 1px, transparent 1.4px);
+  background-size: 10px 10px;
+}
+
+@media (max-width: 900px) {
+  .link {
+    grid-template-columns: 2.25rem minmax(0, 1fr) auto;
+    grid-template-areas:
+      'index title arrow'
+      '. role year';
+    row-gap: 6px;
+  }
+
+  .index {
+    grid-area: index;
+  }
+
+  .title {
+    grid-area: title;
+  }
+
+  .arrow {
+    grid-area: arrow;
+  }
+
+  .role {
+    grid-area: role;
+    font-size: 0.875rem;
+  }
+
+  .year {
+    grid-area: year;
+  }
+
+  .stack {
+    display: none;
+  }
+}
+
+@media (pointer: coarse) {
+  .preview {
+    display: none;
+  }
+}

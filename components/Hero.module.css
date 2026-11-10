@@ -1,0 +1,107 @@
+.hero {
+  position: relative;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  padding: calc(var(--nav-h) + 16px) var(--gutter) 32px;
+}
+
+.top {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.title {
+  margin: auto 0;
+  display: flex;
+  flex-direction: column;
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: clamp(4rem, 16.5vw, 22rem);
+  line-height: 0.82;
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+  white-space: nowrap;
+}
+
+.line {
+  display: block;
+  overflow: hidden;
+  padding-block: 0.03em;
+}
+
+.line:last-child {
+  align-self: flex-end;
+}
+
+.char {
+  display: inline-block;
+  will-change: transform;
+}
+
+.bottom {
+  display: grid;
+  grid-template-columns: 1fr 1.4fr auto;
+  align-items: end;
+  gap: 24px;
+}
+
+.role {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.roleText {
+  font-family: var(--font-mono);
+  font-size: clamp(1.1rem, 1.8vw, 1.6rem);
+  color: var(--accent);
+  min-height: 1.2em;
+}
+
+.tagline {
+  max-width: 34ch;
+  font-size: clamp(1rem, 1.4vw, 1.25rem);
+  line-height: 1.35;
+}
+
+.scroll {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.scrollTrack {
+  position: relative;
+  width: 14px;
+  height: 32px;
+  border: 1px solid var(--ink);
+  border-radius: 999px;
+}
+
+.scrollDot {
+  position: absolute;
+  top: 5px;
+  left: 50%;
+  width: 4px;
+  height: 4px;
+  margin-left: -2px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+@media (max-width: 760px) {
+  .bottom {
+    grid-template-columns: 1fr;
+  }
+
+  .scroll {
+    display: none;
+  }
+
+  .line:last-child {
+    align-self: flex-start;
+  }
+}
