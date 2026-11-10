@@ -10,8 +10,6 @@ const pad = (n) => String(n).padStart(2, '0');
 
 export default function Projects() {
   const root = useRef(null);
-  const preview = useRef(null);
-  const track = useRef(null);
   const follow = useRef(null);
 
   const { contextSafe } = useGSAP(
@@ -32,9 +30,10 @@ export default function Projects() {
 
       // Floating preview that follows the cursor over the list
       mm.add(FINE_POINTER, () => {
-        gsap.set(preview.current, { xPercent: -50, yPercent: -50, scale: 0, autoAlpha: 0 });
-        const xTo = gsap.quickTo(preview.current, 'x', { duration: 0.6, ease: 'power3.out' });
-        const yTo = gsap.quickTo(preview.current, 'y', { duration: 0.6, ease: 'power3.out' });
+        const preview = q('[data-preview]');
+        gsap.set(preview, { xPercent: -50, yPercent: -50, scale: 0, autoAlpha: 0 });
+        const xTo = gsap.quickTo(preview, 'x', { duration: 0.6, ease: 'power3.out' });
+        const yTo = gsap.quickTo(preview, 'y', { duration: 0.6, ease: 'power3.out' });
         follow.current = (e) => {
           const box = root.current.getBoundingClientRect();
           xTo(e.clientX - box.left);
@@ -50,9 +49,10 @@ export default function Projects() {
 
   const onMove = (e) => follow.current?.(e);
 
+  // Selector strings resolve inside the section because contextSafe runs in its GSAP context.
   const showPreview = contextSafe((on) => {
-    if (!follow.current) return;
-    gsap.to(preview.current, {
+    if (!window.matchMedia(FINE_POINTER).matches) return;
+    gsap.to('[data-preview]', {
       scale: on ? 1 : 0,
       autoAlpha: on ? 1 : 0,
       duration: on ? 0.5 : 0.35,
@@ -63,7 +63,7 @@ export default function Projects() {
 
   const enterRow = contextSafe((e, i) => {
     const row = e.currentTarget;
-    gsap.to(track.current, { yPercent: -100 * i, duration: 0.6, ease: 'expo.out', overwrite: 'auto' });
+    gsap.to('[data-track]', { yPercent: -100 * i, duration: 0.6, ease: 'expo.out', overwrite: 'auto' });
     gsap.to(row.querySelector('[data-fill]'), {
       scaleY: 1,
       transformOrigin: 'bottom center',
@@ -118,7 +118,7 @@ export default function Projects() {
               </span>
               <span className={styles.role}>{p.role}</span>
               <span className={`label ${styles.stack}`}>{p.stack.join(' · ')}</span>
-              <span className={`label ${styles.year}`}>{p.year}</span>
+              <span className={`label ${styles.year}`}>{p.when}</span>
               <span data-arrow className={styles.arrow} aria-hidden>
                 →
               </span>
@@ -127,8 +127,8 @@ export default function Projects() {
         ))}
       </ul>
 
-      <div ref={preview} className={styles.preview} aria-hidden>
-        <div ref={track} className={styles.track}>
+      <div data-preview className={styles.preview} aria-hidden>
+        <div data-track className={styles.track}>
           {projects.map((p) => (
             <div key={p.title} className={styles.slide} style={{ background: p.color }}>
               <span>{p.short}</span>

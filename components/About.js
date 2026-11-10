@@ -97,7 +97,7 @@ export default function About() {
             <span data-track className={styles.track} aria-hidden />
             <ol>
               {experience.map((e) => (
-                <li key={e.period} data-exp className={styles.item}>
+                <li key={e.role} data-exp className={styles.item}>
                   <span className={`label ${styles.period}`}>{e.period}</span>
                   <p className={styles.role}>{e.role}</p>
                   <p className={styles.company}>{e.company}</p>

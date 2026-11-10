@@ -10,7 +10,6 @@ import styles from './Contact.module.css';
 
 export default function Contact() {
   const root = useRef(null);
-  const email = useRef(null);
 
   const { contextSafe } = useGSAP(
     () => {
@@ -32,7 +31,7 @@ export default function Contact() {
           transformOrigin: 'left center',
           duration: 1.2,
           ease: 'expo.inOut',
-          scrollTrigger: { trigger: email.current, start: 'top 90%', once: true },
+          scrollTrigger: { trigger: q('[data-email]')[0], start: 'top 90%', once: true },
         });
       });
     },
@@ -41,7 +40,7 @@ export default function Contact() {
 
   const scrambleEmail = contextSafe(() => {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-    gsap.to(email.current.querySelector('[data-text]'), {
+    gsap.to('[data-text]', {
       duration: 0.9,
       ease: 'none',
       overwrite: true,
@@ -55,12 +54,12 @@ export default function Contact() {
       <SplitHeading className={styles.heading}>Let&apos;s talk</SplitHeading>
 
       <p data-reveal className={styles.lead}>
-        Open to product engineering roles, freelance builds and teams that care about design.
+        Open to internships, junior roles and freelance projects in software development, product engineering and UI/UX. Based in {profile.location}, working remotely.
       </p>
 
       <div data-reveal>
         <Magnetic strength={0.2}>
-          <a ref={email} href={`mailto:${profile.email}`} className={styles.email} onPointerEnter={scrambleEmail}>
+          <a data-email href={`mailto:${profile.email}`} className={styles.email} onPointerEnter={scrambleEmail}>
             <span data-text>{profile.email}</span>
             <span data-underline className={styles.underline} aria-hidden />
           </a>
@@ -78,7 +77,7 @@ export default function Contact() {
       </ul>
 
       <footer className={styles.footer}>
-        <span className="label">© 2026 {profile.name}</span>
+        <span className="label">© 2026 {profile.fullName}</span>
         <span className="label">Built with Next.js + GSAP</span>
         <button type="button" className="label" onClick={() => scrollToTarget('#top')}>
           Back to top ↑

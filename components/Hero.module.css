@@ -13,6 +13,10 @@
   gap: 16px;
 }
 
+.availability {
+  text-align: right;
+}
+
 .title {
   margin: auto 0;
   display: flex;
@@ -97,8 +101,13 @@
     grid-template-columns: 1fr;
   }
 
-  .scroll {
+  .scroll,
+  .availability {
     display: none;
+  }
+
+  .title {
+    font-size: 19.5vw;
   }
 
   .line:last-child {

@@ -167,6 +167,9 @@ export default function Hero() {
           Portfolio ©2026
         </p>
         <p data-fade className="label">
+          {profile.location}
+        </p>
+        <p data-fade className={`label ${styles.availability}`}>
           {profile.availability}
         </p>
       </div>
@@ -187,7 +190,7 @@ export default function Hero() {
             {profile.roles[0]}
           </span>
         </p>
-        <p data-fade className={styles.tagline} data-speed="0.9">
+        <p data-fade className={styles.tagline}>
           {profile.tagline}
         </p>
         <p data-fade className={`label ${styles.scroll}`}>

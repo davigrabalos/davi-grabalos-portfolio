@@ -36,7 +36,7 @@
 .link {
   position: relative;
   display: grid;
-  grid-template-columns: 3rem minmax(0, 1.6fr) minmax(0, 1fr) minmax(0, 1.1fr) 4rem 2rem;
+  grid-template-columns: 3rem minmax(0, 1.6fr) minmax(0, 1fr) minmax(0, 1.1fr) 7.5rem 2rem;
   align-items: center;
   gap: 16px;
   padding: clamp(20px, 3vw, 36px) 0;
@@ -64,6 +64,7 @@
 
 .year {
   text-align: right;
+  white-space: nowrap;
 }
 
 .arrow {

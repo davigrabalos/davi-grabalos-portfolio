@@ -5,13 +5,13 @@ import { gsap, useGSAP, SCRAMBLE_CHARS } from '@/lib/gsap';
 
 // Link whose label re-decodes itself on hover.
 export default function ScrambleLink({ text, children, onPointerEnter, ...rest }) {
-  const label = useRef(null);
-  const { contextSafe } = useGSAP();
+  const root = useRef(null);
+  const { contextSafe } = useGSAP({ scope: root });
 
   const scramble = contextSafe((e) => {
     onPointerEnter?.(e);
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-    gsap.to(label.current, {
+    gsap.to('[data-label]', {
       duration: 0.6,
       ease: 'none',
       overwrite: true,
@@ -20,8 +20,8 @@ export default function ScrambleLink({ text, children, onPointerEnter, ...rest }
   });
 
   return (
-    <a {...rest} onPointerEnter={scramble}>
-      <span ref={label}>{text}</span>
+    <a ref={root} {...rest} onPointerEnter={scramble}>
+      <span data-label>{text}</span>
       {children}
     </a>
   );
