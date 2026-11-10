@@ -54,11 +54,11 @@ export function TransitionProvider({ children }) {
     <TransitionContext.Provider value={{ navigate }}>
       <div 
         ref={flashRedRef} 
-        style={{ position: 'fixed', inset: 0, backgroundColor: 'var(--accent-red)', zIndex: 99999, display: 'none' }} 
+        style={{ position: 'fixed', inset: 0, backgroundColor: 'var(--red)', zIndex: 99999, display: 'none' }} 
       />
       <div 
         ref={flashBlueRef} 
-        style={{ position: 'fixed', inset: 0, backgroundColor: 'var(--accent-blue)', zIndex: 99999, display: 'none' }} 
+        style={{ position: 'fixed', inset: 0, backgroundColor: 'var(--blue)', zIndex: 99999, display: 'none' }} 
       />
       {children}
     </TransitionContext.Provider>

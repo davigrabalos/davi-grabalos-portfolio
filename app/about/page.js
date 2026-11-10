@@ -4,104 +4,135 @@ import { useEffect, useRef } from "react";
 import { TransitionLink } from "@/components/UI/TransitionProvider";
 import Image from "next/image";
 import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import styles from "./about.module.css";
 
-gsap.registerPlugin(ScrollTrigger);
+const SERVICES = [
+  "Art Direction",
+  "Creative Web Development",
+  "Brand Identity Design",
+  "Digital Editorial Design",
+  "Interactive Motion & GSAP",
+];
+
+const LINKS = [
+  { label: "Email", href: "mailto:davigrabalos@gmail.com" },
+  { label: "Instagram", href: "https://instagram.com/davigrabalos", external: true },
+  { label: "GitHub", href: "https://github.com/davigrabalos", external: true },
+];
 
 export default function AboutPage() {
   const bgRef = useRef(null);
-  const containerRef = useRef(null);
+  const contentRef = useRef(null);
 
+  // Parallax bg
   useEffect(() => {
-    const handleMouseMove = (e) => {
+    const move = (e) => {
       if (!bgRef.current) return;
-      const x = (e.clientX / window.innerWidth - 0.5) * 40;
-      const y = (e.clientY / window.innerHeight - 0.5) * 40;
-      gsap.to(bgRef.current, { x, y, duration: 1.2, ease: "power2.out" });
+      const x = (e.clientX / window.innerWidth - 0.5) * 36;
+      const y = (e.clientY / window.innerHeight - 0.5) * 36;
+      gsap.to(bgRef.current, { x, y, duration: 1.5, ease: "power2.out" });
     };
+    window.addEventListener("mousemove", move);
+    return () => window.removeEventListener("mousemove", move);
+  }, []);
 
-    window.addEventListener("mousemove", handleMouseMove);
-    return () => {
-      window.removeEventListener("mousemove", handleMouseMove);
-    };
+  // Stagger-in on mount
+  useEffect(() => {
+    if (!contentRef.current) return;
+    gsap.fromTo(
+      contentRef.current.querySelectorAll(`.${styles.animIn}`),
+      { y: 32, opacity: 0 },
+      { y: 0, opacity: 1, stagger: 0.1, duration: 0.9, ease: "power3.out", delay: 0.15 }
+    );
   }, []);
 
   return (
-    <main ref={containerRef} className={styles.container}>
-      {/* Background Image com sangria para parallax limpo sem zoom nas bordas */}
-      <div className={styles.bgWrapper}>
-        <div ref={bgRef} className={styles.bgImageContainer}>
+    <main className={styles.root}>
+      {/* Background portrait */}
+      <div className={styles.bgWrap}>
+        <div ref={bgRef} className={styles.bgInner}>
           <Image
             src="/images/background.jpg?v=6"
-            alt="Background"
+            alt=""
             fill
             style={{ objectFit: "cover" }}
-            quality={100}
-            unoptimized={true}
+            quality={90}
+            unoptimized
             priority
           />
         </div>
+        <div className={styles.bgVeil} />
       </div>
 
-      <div className={styles.content}>
-        <header className={styles.hero}>
-          <TransitionLink href="/" className={styles.logoLink}>
-            <h1 className={styles.aboutLogoTitle}>
-              <span className={styles.word}>DAVI</span> <span className={styles.word}>GRABALOS.</span>
+      {/* Content */}
+      <div ref={contentRef} className={styles.content}>
+        {/* Name heading */}
+        <div className={`${styles.nameBlock} ${styles.animIn}`}>
+          <TransitionLink href="/" className={styles.nameLink}>
+            <h1 className={styles.name}>
+              Davi<br />
+              <em>Grabalos.</em>
             </h1>
           </TransitionLink>
-          <p className={styles.subtitle}>
-            Art Director & Web Developer crafting high-end digital experiences, visual identities, and interactive storytelling.
-          </p>
-        </header>
+        </div>
 
-        <section className={styles.grid}>
-          <div className={styles.column}>
-            <h2 className={styles.heading}>Services</h2>
+        {/* Bio */}
+        <p className={`${styles.bio} ${styles.animIn}`}>
+          Art Director &amp; Web Developer crafting high-end digital experiences,
+          visual identities, and interactive storytelling.
+        </p>
+
+        {/* Grid */}
+        <div className={styles.grid}>
+          {/* Services */}
+          <section className={`${styles.col} ${styles.animIn}`}>
+            <h2 className={styles.colLabel}>Services</h2>
             <ul className={styles.list}>
-              <li>Art Direction</li>
-              <li>Creative Web Development</li>
-              <li>Brand Identity Design</li>
-              <li>Digital Editorial Design</li>
-              <li>Interactive Motion & GSAP Animations</li>
+              {SERVICES.map((s) => (
+                <li key={s} className={styles.listItem}>
+                  <span className={styles.listBullet}>—</span>
+                  {s}
+                </li>
+              ))}
             </ul>
-          </div>
+          </section>
 
-          <div className={styles.column}>
-            <h2 className={styles.heading}>Approach</h2>
-            <p className={styles.text}>
-              Blending minimalist aesthetics, bold typography, and fluid interactive animations to build unforgettable web experiences that elevate brands and creative productions.
+          {/* Approach */}
+          <section className={`${styles.col} ${styles.animIn}`}>
+            <h2 className={styles.colLabel}>Approach</h2>
+            <p className={styles.colText}>
+              Blending minimalist aesthetics, bold typography, and fluid
+              interactive animations to build unforgettable web experiences
+              that elevate brands and creative productions.
             </p>
-          </div>
+          </section>
 
-          <div className={styles.column}>
-            <h2 className={styles.heading}>Contact & Social</h2>
+          {/* Contact */}
+          <section className={`${styles.col} ${styles.animIn}`}>
+            <h2 className={styles.colLabel}>Contact &amp; Social</h2>
             <ul className={styles.list}>
-              <li>
-                <a href="mailto:davigrabalos@gmail.com" className={styles.link}>
-                  Email ↗
-                </a>
-              </li>
-              <li>
-                <a href="https://instagram.com/davigrabalos" target="_blank" rel="noopener noreferrer" className={styles.link}>
-                  Instagram ↗
-                </a>
-              </li>
-              <li>
-                <a href="https://github.com/davigrabalos" target="_blank" rel="noopener noreferrer" className={styles.link}>
-                  GitHub ↗
-                </a>
-              </li>
+              {LINKS.map(({ label, href, external }) => (
+                <li key={label} className={styles.listItem}>
+                  <a
+                    href={href}
+                    className={styles.contactLink}
+                    {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+                  >
+                    {label} ↗
+                  </a>
+                </li>
+              ))}
             </ul>
-          </div>
-        </section>
+          </section>
+        </div>
 
-        <footer className={styles.footer}>
+        {/* Back */}
+        <div className={`${styles.footer} ${styles.animIn}`}>
           <TransitionLink href="/" className={styles.backLink}>
-            ← Back to Homepage
+            ← Back to work
           </TransitionLink>
-        </footer>
+          <span className={styles.copyright}>© {new Date().getFullYear()} Davi Grabalos</span>
+        </div>
       </div>
     </main>
   );
