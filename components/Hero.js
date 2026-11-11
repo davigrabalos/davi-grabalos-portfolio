@@ -3,7 +3,6 @@
 import { useRef } from 'react';
 import { gsap, SplitText, useGSAP, fontsReady, MOTION_OK, SCRAMBLE_CHARS } from '@/lib/gsap';
 import { profile } from '@/lib/content';
-import { icons } from '@/lib/icons';
 import styles from './Hero.module.css';
 
 const BASE_WEIGHT = 300;
@@ -25,20 +24,7 @@ export default function Hero() {
           const { chars } = SplitText.create(lines, { type: 'chars', charsClass: styles.char });
           gsap.set(title.current, { autoAlpha: 1 });
 
-          // Pixel coffee mug perched on the last letter of the first name. It lives inside that char so it
-          // follows the cursor pull and the scroll scatter; SplitText's revert removes it with the split.
-          const mug = document.createElement('span');
-          mug.className = styles.coffee;
-          mug.setAttribute('aria-hidden', 'true');
-          mug.innerHTML = `<svg viewBox="0 0 32 32" width="100%" height="100%">${icons.coffee}</svg>`;
-          chars[profile.first.length - 1].appendChild(mug);
-
           const mm = gsap.matchMedia();
-
-          // Without motion the masks stay on, so open them here or the mug is clipped
-          mm.add('(prefers-reduced-motion: reduce)', () => {
-            gsap.set(lines, { overflow: 'visible' });
-          });
 
           mm.add(MOTION_OK, () => {
             // Scroll: the name breaks apart as the hero leaves.
@@ -72,20 +58,7 @@ export default function Hero() {
               })
               .from(q('[data-fade]'), { y: 24, autoAlpha: 0, stagger: 0.08 }, '-=0.9')
               // Release the masks so letters can fly free on scroll
-              .set(lines, { overflow: 'visible' })
-              // Mug drops onto its letter once the masks open, then tilts like a sprite while it steams
-              .from(mug, { y: () => -window.innerHeight * 0.5, autoAlpha: 0, duration: 1.1, ease: 'bounce.out' }, '-=0.3')
-              // Started as its own tween: an endless repeat inside the intro would keep it from completing
-              .call(() =>
-                gsap.to(mug, {
-                  rotation: 8,
-                  duration: 0.6,
-                  ease: 'steps(1)',
-                  repeat: -1,
-                  yoyo: true,
-                  transformOrigin: '50% 100%',
-                }),
-              );
+              .set(lines, { overflow: 'visible' });
 
             // Role line decodes into the next role, holds, repeats
             const roleEl = q('[data-role]')[0];
