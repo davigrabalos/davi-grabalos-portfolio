@@ -19,9 +19,31 @@
   letter-spacing: -0.02em;
 }
 
+.intro {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.7fr);
+  align-items: center;
+  gap: clamp(32px, 6vw, 96px);
+  margin: clamp(48px, 8vw, 120px) 0;
+}
+
+.photo {
+  position: relative;
+  width: min(100%, 420px);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  overflow: hidden;
+  clip-path: circle(50% at 50% 50%);
+  background: var(--accent);
+}
+
+.photoImg {
+  object-fit: cover;
+  object-position: 50% 30%;
+}
+
 .bio {
   max-width: 28ch;
-  margin: clamp(48px, 8vw, 120px) 0 clamp(48px, 8vw, 120px) auto;
   font-size: clamp(1.6rem, 3.4vw, 3.4rem);
   line-height: 1.12;
   letter-spacing: -0.02em;
@@ -98,8 +120,23 @@
 }
 
 .groupLabel {
+  display: flex;
+  align-items: center;
+  gap: 10px;
   font-weight: 500;
   margin-bottom: 10px;
+}
+
+.sub {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.subIcon {
+  width: 1.5em;
+  height: 1.5em;
+  color: var(--accent);
 }
 
 .chips {
@@ -140,7 +177,11 @@
     grid-template-columns: 1fr;
   }
 
-  .bio {
-    margin-left: 0;
+  .intro {
+    grid-template-columns: 1fr;
+  }
+
+  .photo {
+    width: min(64vw, 300px);
   }
 }

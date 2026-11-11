@@ -1,17 +1,19 @@
 'use client';
 
 import { useRef } from 'react';
+import Image from 'next/image';
 import { gsap, SplitText, ScrollTrigger, useGSAP, fontsReady, MOTION_OK } from '@/lib/gsap';
 import { profile, experience, skills } from '@/lib/content';
 import SplitHeading from './SplitHeading';
 import Magnetic from './Magnetic';
+import PixelIcon from './PixelIcon';
 import styles from './About.module.css';
 
 export default function About() {
   const root = useRef(null);
   const bio = useRef(null);
 
-  useGSAP(
+  const { contextSafe } = useGSAP(
     (context, contextSafe) => {
       const q = gsap.utils.selector(root);
       const mm = gsap.matchMedia();
@@ -35,6 +37,26 @@ export default function About() {
       );
 
       mm.add(MOTION_OK, () => {
+        // Portrait opens as an expanding circle, then drifts inside its frame while scrolling
+        const photo = q('[data-photo]')[0];
+        gsap.from(photo, {
+          clipPath: 'circle(0% at 50% 50%)',
+          rotation: -12,
+          duration: 1.6,
+          ease: 'expo.out',
+          scrollTrigger: { trigger: photo, start: 'top 85%', once: true },
+        });
+        gsap.fromTo(
+          photo.querySelector('img'),
+          { yPercent: -6, scale: 1.15 },
+          {
+            yPercent: 6,
+            scale: 1.15,
+            ease: 'none',
+            scrollTrigger: { trigger: photo, start: 'top bottom', end: 'bottom top', scrub: true },
+          },
+        );
+
         // Timeline line draws itself, entries slide in beside it
         gsap.from(q('[data-track]'), {
           scaleY: 0,
@@ -53,6 +75,14 @@ export default function About() {
         });
 
         q('[data-group]').forEach((group) => {
+          // Pixel icons snap in frame by frame (steps ease), like a sprite
+          gsap.from(group.querySelector('[data-icon]'), {
+            scale: 0,
+            rotation: -90,
+            duration: 0.5,
+            ease: 'steps(5)',
+            scrollTrigger: { trigger: group, start: 'top 88%', once: true },
+          });
           gsap.from(group.querySelectorAll('[data-chip]'), {
             scale: 0.6,
             autoAlpha: 0,
@@ -61,6 +91,13 @@ export default function About() {
             stagger: 0.05,
             scrollTrigger: { trigger: group, start: 'top 88%', once: true },
           });
+        });
+
+        gsap.from(q('[data-exp-icon]'), {
+          y: -16,
+          duration: 0.6,
+          ease: 'steps(4)',
+          scrollTrigger: { trigger: q('[data-timeline]')[0], start: 'top 85%', once: true },
         });
 
         ScrollTrigger.create({
@@ -79,6 +116,14 @@ export default function About() {
     { scope: root },
   );
 
+  // Download icon drops in pixel steps while the button is hovered
+  const bounceIcon = contextSafe((on) => {
+    gsap.killTweensOf('[data-cv-icon]');
+    gsap.to('[data-cv-icon]', on
+      ? { y: 4, duration: 0.3, ease: 'steps(2)', repeat: -1, yoyo: true }
+      : { y: 0, duration: 0.15, ease: 'steps(1)' });
+  });
+
   return (
     <section ref={root} id="background" className={styles.section}>
       <header className={styles.head}>
@@ -86,13 +131,27 @@ export default function About() {
         <SplitHeading className={styles.heading}>Background</SplitHeading>
       </header>
 
-      <p ref={bio} className={`split-init ${styles.bio}`}>
-        {profile.bio}
-      </p>
+      <div className={styles.intro}>
+        <div data-photo className={styles.photo}>
+          <Image
+            src="/davi-grabalos.jpg"
+            alt={`Portrait of ${profile.name}`}
+            fill
+            sizes="(max-width: 860px) 60vw, 30vw"
+            className={styles.photoImg}
+          />
+        </div>
+        <p ref={bio} className={`split-init ${styles.bio}`}>
+          {profile.bio}
+        </p>
+      </div>
 
       <div className={styles.grid}>
         <div>
-          <h3 className={`label ${styles.sub}`}>Experience</h3>
+          <h3 className={`label ${styles.sub}`}>
+            <PixelIcon name="briefcase" data-exp-icon className={styles.subIcon} />
+            Experience
+          </h3>
           <div data-timeline className={styles.timeline}>
             <span data-track className={styles.track} aria-hidden />
             <ol>
@@ -113,7 +172,10 @@ export default function About() {
           <div className={styles.groups}>
             {skills.map((g) => (
               <div key={g.label} data-group className={styles.group}>
-                <p className={styles.groupLabel}>{g.label}</p>
+                <p className={styles.groupLabel}>
+                  <PixelIcon name={g.icon} data-icon size="1.25em" />
+                  {g.label}
+                </p>
                 <ul className={styles.chips}>
                   {g.items.map((item) => (
                     <li key={item} data-chip className={`label ${styles.chip}`}>
@@ -127,8 +189,12 @@ export default function About() {
 
           <div data-cv className={styles.cvWrap}>
             <Magnetic>
-              <a href={profile.cv} className={styles.cv} download>
-                Download CV <span aria-hidden>↓</span>
+              <a href={profile.cv} className={styles.cv}
+                download
+                onPointerEnter={() => bounceIcon(true)}
+                onPointerLeave={() => bounceIcon(false)}
+              >
+                Download CV <PixelIcon name="download" data-cv-icon size="1.4em" />
               </a>
             </Magnetic>
           </div>

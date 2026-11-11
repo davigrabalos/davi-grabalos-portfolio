@@ -41,8 +41,22 @@
 }
 
 .char {
+  position: relative;
   display: inline-block;
   will-change: transform;
+}
+
+.coffee {
+  position: absolute;
+  left: 50%;
+  /* Doto glyphs rise above the char box (line-height 0.82), so lift the mug clear of the letter top */
+  bottom: 100%;
+  margin-bottom: 0.3em;
+  width: 0.4em;
+  height: 0.4em;
+  margin-left: -0.2em;
+  color: var(--accent);
+  pointer-events: none;
 }
 
 .bottom {

@@ -32,6 +32,13 @@
   color: var(--accent);
 }
 
+.mailIcon {
+  width: 0.8em;
+  height: 0.8em;
+  margin-right: 0.3em;
+  vertical-align: -0.05em;
+}
+
 .underline {
   position: absolute;
   left: 0;

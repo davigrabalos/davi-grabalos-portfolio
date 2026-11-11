@@ -6,6 +6,7 @@ import { profile, socials } from '@/lib/content';
 import SplitHeading from './SplitHeading';
 import Magnetic from './Magnetic';
 import ScrambleLink from './ScrambleLink';
+import PixelIcon from './PixelIcon';
 import styles from './Contact.module.css';
 
 export default function Contact() {
@@ -40,6 +41,11 @@ export default function Contact() {
 
   const scrambleEmail = contextSafe(() => {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    gsap.fromTo(
+      '[data-mail-icon]',
+      { rotation: -14 },
+      { rotation: 14, duration: 0.12, ease: 'steps(1)', repeat: 5, yoyo: true, clearProps: 'rotation' },
+    );
     gsap.to('[data-text]', {
       duration: 0.9,
       ease: 'none',
@@ -60,6 +66,7 @@ export default function Contact() {
       <div data-reveal>
         <Magnetic strength={0.2}>
           <a data-email href={`mailto:${profile.email}`} className={styles.email} onPointerEnter={scrambleEmail}>
+            <PixelIcon name="mail" data-mail-icon className={styles.mailIcon} />
             <span data-text>{profile.email}</span>
             <span data-underline className={styles.underline} aria-hidden />
           </a>
@@ -78,7 +85,12 @@ export default function Contact() {
 
       <footer className={styles.footer}>
         <span className="label">© 2026 {profile.fullName}</span>
-        <span className="label">Built with Next.js + GSAP</span>
+        <span className="label">
+          Built with Next.js + GSAP · Icons by{' '}
+          <a href="https://www.streamlinehq.com" target="_blank" rel="noreferrer">
+            Streamline
+          </a>
+        </span>
         <button type="button" className="label" onClick={() => scrollToTarget('#top')}>
           Back to top ↑
         </button>
