@@ -30,7 +30,11 @@ export default function Fan({ pieces, spread = false, sizes = '20vw', className 
   return (
     <div ref={root} data-fan className={`${styles.fan} ${className}`} aria-hidden>
       {pieces.map((p) => (
-        <div key={p.src} data-fan-card className={styles.card} style={{ aspectRatio: `${p.w} / ${p.h}` }}>
+        <div key={p.src} data-fan-card className={styles.card} style={{
+            aspectRatio: `${p.w} / ${p.h}`,
+            // Landscape pieces (slides, tickets) get a wider card so they read at the same visual weight
+            width: p.w > p.h * 1.2 ? 'var(--fan-card-wide, 72%)' : undefined,
+          }}>
           <Image src={p.src} alt="" fill sizes={sizes} style={{ objectFit: 'cover' }} />
         </div>
       ))}

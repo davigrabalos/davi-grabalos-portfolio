@@ -204,7 +204,8 @@ export default function Gallery({ room, number, origin, onClose }) {
         gsap
           .timeline()
           .fromTo(el, { clipPath: insetFrom(origin) }, { clipPath: FULL, duration: 1, ease: 'expo.inOut' })
-          .from(figures, { x: '45vw', rotationY: -70, autoAlpha: 0, duration: 1.4, stagger: 0.08, ease: 'expo.out' }, 0.45)
+          // Only the first few are on screen; cap the stagger so long rooms (20 slides) don't drag on
+          .from(figures, { x: '45vw', rotationY: -70, autoAlpha: 0, duration: 1.4, stagger: { each: 0.08, amount: Math.min(0.5, 0.08 * figures.length) }, ease: 'expo.out' }, 0.45)
           .from(q('[data-ui]'), { y: -16, autoAlpha: 0, duration: 0.7, stagger: 0.06, ease: 'expo.out' }, 0.6)
           .to(
             q('[data-room-name]'),
@@ -240,7 +241,7 @@ export default function Gallery({ room, number, origin, onClose }) {
   return createPortal(
     <div ref={root} className={styles.gallery} role="dialog" aria-modal="true" aria-label={`${room.title} gallery`}>
       <header className={styles.bar}>
-        <p data-ui className="label">
+        <p data-ui className={`label ${styles.roomName}`}>
           Room {pad(number)} · <span data-room-name>{room.title}</span>
         </p>
         <p data-ui className={`label ${styles.counter}`} aria-live="polite">

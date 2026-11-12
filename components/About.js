@@ -38,14 +38,18 @@ export default function About() {
 
       mm.add(MOTION_OK, () => {
         // Portrait opens as an expanding circle, then drifts inside its frame while scrolling
+        // Both ends spelled the same way: the browser reports the CSS value as "circle(50%)", and GSAP
+        // can only interpolate clip-paths whose numbers line up, so a bare .from() warped the circle mid-way.
         const photo = q('[data-photo]')[0];
-        gsap.from(photo, {
-          clipPath: 'circle(0% at 50% 50%)',
-          rotation: -12,
-          duration: 1.6,
-          ease: 'expo.out',
-          scrollTrigger: { trigger: photo, start: 'top 85%', once: true },
-        });
+        gsap
+          .timeline({ scrollTrigger: { trigger: photo, start: 'top 85%', once: true } })
+          .fromTo(
+            photo,
+            { clipPath: 'circle(0% at 50% 50%)', rotation: -12 },
+            { clipPath: 'circle(50% at 50% 50%)', rotation: 0, duration: 1.6, ease: 'expo.out' },
+          )
+          // Mobile only (hidden on desktop): the name slides in beside the portrait
+          .from(q('[data-who] > *'), { x: -24, autoAlpha: 0, duration: 0.9, stagger: 0.08, ease: 'expo.out' }, 0.25);
         gsap.fromTo(
           photo.querySelector('img'),
           { yPercent: -6, scale: 1.15 },
@@ -132,14 +136,24 @@ export default function About() {
       </header>
 
       <div className={styles.intro}>
-        <div data-photo className={styles.photo}>
-          <Image
-            src="/davi-grabalos.jpg"
-            alt={`Portrait of ${profile.name}`}
-            fill
-            sizes="(max-width: 860px) 60vw, 30vw"
-            className={styles.photoImg}
-          />
+        <div className={styles.portrait}>
+          <div data-photo className={styles.photo}>
+            <Image
+              src="/davi-grabalos.jpg"
+              alt={`Portrait of ${profile.name}`}
+              fill
+              sizes="(max-width: 860px) 40vw, 30vw"
+              className={styles.photoImg}
+            />
+          </div>
+          <div data-who className={styles.who}>
+            <p className={styles.whoName}>
+              {profile.first}
+              <br />
+              {profile.last}
+            </p>
+            <p className={`label ${styles.whoRole}`}>{profile.roles.join(' · ')}</p>
+          </div>
         </div>
         <p ref={bio} className={`split-init ${styles.bio}`}>
           {profile.bio}

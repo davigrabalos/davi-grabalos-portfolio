@@ -1,0 +1,398 @@
+{
+  "circo.dos.sonhos": {
+    "slug": "circo-dos-sonhos",
+    "pieces": [
+      {
+        "file": "01.png",
+        "src": "/gallery/circo-dos-sonhos/01.jpg",
+        "w": 1600,
+        "h": 2000
+      },
+      {
+        "file": "02.png",
+        "src": "/gallery/circo-dos-sonhos/02.jpg",
+        "w": 1600,
+        "h": 2000
+      },
+      {
+        "file": "Circo dos Sonhos - Artboard 1.png",
+        "src": "/gallery/circo-dos-sonhos/circo-dos-sonhos-artboard-1.jpg",
+        "w": 1600,
+        "h": 2000
+      },
+      {
+        "file": "Convites.png",
+        "src": "/gallery/circo-dos-sonhos/convites.jpg",
+        "w": 3000,
+        "h": 1088
+      }
+    ]
+  },
+  "galpao": {
+    "slug": "galpao",
+    "pieces": [
+      {
+        "file": "AGrandeComissão004.jpg",
+        "src": "/gallery/galpao/agrandecomissao004.jpg",
+        "w": 1080,
+        "h": 1439
+      },
+      {
+        "file": "banner-insista.jpg",
+        "src": "/gallery/galpao/banner-insista.jpg",
+        "w": 1349,
+        "h": 1800
+      },
+      {
+        "file": "CHAMADO.jpg",
+        "src": "/gallery/galpao/chamado.jpg",
+        "w": 1080,
+        "h": 1451
+      },
+      {
+        "file": "CHAMADO02.jpg",
+        "src": "/gallery/galpao/chamado02.jpg",
+        "w": 1080,
+        "h": 1449
+      },
+      {
+        "file": "cristo-reina.jpg",
+        "src": "/gallery/galpao/cristo-reina.jpg",
+        "w": 1350,
+        "h": 1800
+      },
+      {
+        "file": "ide.jpg",
+        "src": "/gallery/galpao/ide.jpg",
+        "w": 1440,
+        "h": 1800
+      },
+      {
+        "file": "somoscorpo001.jpg",
+        "src": "/gallery/galpao/somoscorpo001.jpg",
+        "w": 1080,
+        "h": 1363
+      },
+      {
+        "file": "STREET01.jpg",
+        "src": "/gallery/galpao/street01.jpg",
+        "w": 1080,
+        "h": 1454
+      },
+      {
+        "file": "Street02.jpg",
+        "src": "/gallery/galpao/street02.jpg",
+        "w": 1080,
+        "h": 1357
+      },
+      {
+        "file": "verbo&carne003.jpg",
+        "src": "/gallery/galpao/verbo-e-carne003.jpg",
+        "w": 1080,
+        "h": 1366
+      },
+      {
+        "file": "vinde&vede002.jpg",
+        "src": "/gallery/galpao/vinde-e-vede002.jpg",
+        "w": 1080,
+        "h": 1398
+      }
+    ]
+  },
+  "ggc.construtora": {
+    "slug": "ggc-construtora",
+    "pieces": [
+      {
+        "file": "SalESol.pdf#01",
+        "src": "/gallery/ggc-construtora/salesol-01.jpg",
+        "w": 2000,
+        "h": 1125
+      },
+      {
+        "file": "SalESol.pdf#02",
+        "src": "/gallery/ggc-construtora/salesol-02.jpg",
+        "w": 2000,
+        "h": 1125
+      },
+      {
+        "file": "SalESol.pdf#03",
+        "src": "/gallery/ggc-construtora/salesol-03.jpg",
+        "w": 2000,
+        "h": 1125
+      },
+      {
+        "file": "SalESol.pdf#04",
+        "src": "/gallery/ggc-construtora/salesol-04.jpg",
+        "w": 2000,
+        "h": 1125
+      },
+      {
+        "file": "SalESol.pdf#05",
+        "src": "/gallery/ggc-construtora/salesol-05.jpg",
+        "w": 2000,
+        "h": 1125
+      },
+      {
+        "file": "SalESol.pdf#06",
+        "src": "/gallery/ggc-construtora/salesol-06.jpg",
+        "w": 2000,
+        "h": 1125
+      },
+      {
+        "file": "SalESol.pdf#07",
+        "src": "/gallery/ggc-construtora/salesol-07.jpg",
+        "w": 2000,
+        "h": 1125
+      },
+      {
+        "file": "SalESol.pdf#08",
+        "src": "/gallery/ggc-construtora/salesol-08.jpg",
+        "w": 2000,
+        "h": 1125
+      },
+      {
+        "file": "SalESol.pdf#09",
+        "src": "/gallery/ggc-construtora/salesol-09.jpg",
+        "w": 2000,
+        "h": 1125
+      },
+      {
+        "file": "SalESol.pdf#10",
+        "src": "/gallery/ggc-construtora/salesol-10.jpg",
+        "w": 2000,
+        "h": 1125
+      },
+      {
+        "file": "SalESol.pdf#11",
+        "src": "/gallery/ggc-construtora/salesol-11.jpg",
+        "w": 2000,
+        "h": 1125
+      },
+      {
+        "file": "SalESol.pdf#12",
+        "src": "/gallery/ggc-construtora/salesol-12.jpg",
+        "w": 2000,
+        "h": 1125
+      },
+      {
+        "file": "SalESol.pdf#13",
+        "src": "/gallery/ggc-construtora/salesol-13.jpg",
+        "w": 2000,
+        "h": 1125
+      },
+      {
+        "file": "SalESol.pdf#14",
+        "src": "/gallery/ggc-construtora/salesol-14.jpg",
+        "w": 2000,
+        "h": 1125
+      },
+      {
+        "file": "SalESol.pdf#15",
+        "src": "/gallery/ggc-construtora/salesol-15.jpg",
+        "w": 2000,
+        "h": 1125
+      },
+      {
+        "file": "SalESol.pdf#16",
+        "src": "/gallery/ggc-construtora/salesol-16.jpg",
+        "w": 2000,
+        "h": 1125
+      },
+      {
+        "file": "SalESol.pdf#17",
+        "src": "/gallery/ggc-construtora/salesol-17.jpg",
+        "w": 2000,
+        "h": 1125
+      },
+      {
+        "file": "SalESol.pdf#18",
+        "src": "/gallery/ggc-construtora/salesol-18.jpg",
+        "w": 2000,
+        "h": 1125
+      },
+      {
+        "file": "SalESol.pdf#19",
+        "src": "/gallery/ggc-construtora/salesol-19.jpg",
+        "w": 2000,
+        "h": 1125
+      },
+      {
+        "file": "SalESol.pdf#20",
+        "src": "/gallery/ggc-construtora/salesol-20.jpg",
+        "w": 2000,
+        "h": 1125
+      }
+    ]
+  },
+  "singles": {
+    "slug": "singles",
+    "pieces": [
+      {
+        "file": "apostasia.jpg",
+        "src": "/gallery/singles/apostasia.jpg",
+        "w": 1800,
+        "h": 1800
+      },
+      {
+        "file": "CoverArt-LHAP.png",
+        "src": "/gallery/singles/coverart-lhap.jpg",
+        "w": 2000,
+        "h": 2000
+      },
+      {
+        "file": "Parasita - Reject.png",
+        "src": "/gallery/singles/parasita-reject.jpg",
+        "w": 2000,
+        "h": 2000
+      },
+      {
+        "file": "Salmo13.jpg",
+        "src": "/gallery/singles/salmo13.jpg",
+        "w": 2000,
+        "h": 2000
+      }
+    ]
+  },
+  "strept.co": {
+    "slug": "strept-co",
+    "pieces": [
+      {
+        "file": "01.jpeg",
+        "src": "/gallery/strept-co/01.jpg",
+        "w": 1500,
+        "h": 2000
+      },
+      {
+        "file": "01.jpg",
+        "src": "/gallery/strept-co/01-jpg.jpg",
+        "w": 1500,
+        "h": 2000
+      },
+      {
+        "file": "02.jpg",
+        "src": "/gallery/strept-co/02.jpg",
+        "w": 1500,
+        "h": 2000
+      },
+      {
+        "file": "noname - cópia.png",
+        "src": "/gallery/strept-co/noname-copia.jpg",
+        "w": 1500,
+        "h": 2000
+      },
+      {
+        "file": "noname.png",
+        "src": "/gallery/strept-co/noname.jpg",
+        "w": 1528,
+        "h": 2000
+      },
+      {
+        "file": "pexels-introspectivedsgn-18426524.jpg",
+        "src": "/gallery/strept-co/pexels-introspectivedsgn-18426524.jpg",
+        "w": 1500,
+        "h": 2000
+      },
+      {
+        "file": "pexels-mikhail-nilov-6969848.jpg",
+        "src": "/gallery/strept-co/pexels-mikhail-nilov-6969848.jpg",
+        "w": 1500,
+        "h": 2000
+      },
+      {
+        "file": "Post-01-02.png",
+        "src": "/gallery/strept-co/post-01-02.jpg",
+        "w": 1500,
+        "h": 2000
+      },
+      {
+        "file": "Post-01.png",
+        "src": "/gallery/strept-co/post-01.jpg",
+        "w": 1500,
+        "h": 2000
+      },
+      {
+        "file": "Post-02-02.jpg",
+        "src": "/gallery/strept-co/post-02-02.jpg",
+        "w": 1500,
+        "h": 2000
+      },
+      {
+        "file": "Post-02-03.png",
+        "src": "/gallery/strept-co/post-02-03.jpg",
+        "w": 1500,
+        "h": 2000
+      },
+      {
+        "file": "Post-02-04.png",
+        "src": "/gallery/strept-co/post-02-04.jpg",
+        "w": 1500,
+        "h": 2000
+      },
+      {
+        "file": "Post-02.png",
+        "src": "/gallery/strept-co/post-02.jpg",
+        "w": 1500,
+        "h": 2000
+      },
+      {
+        "file": "Prancheta 1.png",
+        "src": "/gallery/strept-co/prancheta-1.jpg",
+        "w": 3000,
+        "h": 871
+      },
+      {
+        "file": "Prancheta 2 - iCON.png",
+        "src": "/gallery/strept-co/prancheta-2-icon.jpg",
+        "w": 2000,
+        "h": 2000
+      }
+    ]
+  },
+  "tokyogogo": {
+    "slug": "tokyogogo",
+    "pieces": [
+      {
+        "file": "Post1.jpg",
+        "src": "/gallery/tokyogogo/post1.jpg",
+        "w": 1500,
+        "h": 2000
+      },
+      {
+        "file": "Post4.png",
+        "src": "/gallery/tokyogogo/post4.jpg",
+        "w": 1595,
+        "h": 2000
+      },
+      {
+        "file": "Post5.jpg",
+        "src": "/gallery/tokyogogo/post5.jpg",
+        "w": 1500,
+        "h": 2000
+      },
+      {
+        "file": "Post7.jpeg",
+        "src": "/gallery/tokyogogo/post7.jpg",
+        "w": 1086,
+        "h": 1448
+      },
+      {
+        "file": "Post8.png",
+        "src": "/gallery/tokyogogo/post8.jpg",
+        "w": 1512,
+        "h": 2000
+      },
+      {
+        "file": "Post9.jpg",
+        "src": "/gallery/tokyogogo/post9.jpg",
+        "w": 1086,
+        "h": 1448
+      },
+      {
+        "file": "Post11.jpg",
+        "src": "/gallery/tokyogogo/post11.jpg",
+        "w": 1500,
+        "h": 2000
+      }
+    ]
+  }
+}

@@ -27,8 +27,20 @@
   margin: clamp(48px, 8vw, 120px) 0;
 }
 
+.portrait {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+/* Name beside the portrait: mobile only, where the photo no longer fills its column */
+.who {
+  display: none;
+}
+
 .photo {
   position: relative;
+  flex: none;
   width: min(100%, 420px);
   aspect-ratio: 1;
   border-radius: 50%;
@@ -182,6 +194,27 @@
   }
 
   .photo {
-    width: min(64vw, 300px);
+    width: min(36vw, 160px);
+  }
+
+  .who {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    min-width: 0;
+  }
+
+  .whoName {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: clamp(2rem, 10vw, 3.5rem);
+    line-height: 0.9;
+    text-transform: uppercase;
+    letter-spacing: -0.02em;
+  }
+
+  .whoRole {
+    color: var(--accent);
+    line-height: 1.6;
   }
 }

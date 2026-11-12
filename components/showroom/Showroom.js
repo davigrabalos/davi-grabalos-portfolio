@@ -31,8 +31,24 @@ export default function Showroom() {
 
           const mm = gsap.matchMedia();
           mm.add(MOTION_OK, () => {
+            // Scroll drift is built only after the intro, from explicit values: created alongside it, a .to()
+            // records each letter mid-rise as its start, so letters "returned" into the mask on scroll back.
+            const drift = () =>
+              gsap.fromTo(
+                split.chars,
+                { fontWeight: 400, yPercent: 0 },
+                {
+                  fontWeight: 100,
+                  yPercent: (i) => (i % 2 ? -18 : 18),
+                  ease: 'none',
+                  immediateRender: false,
+                  stagger: { each: 0.02, from: 'center' },
+                  scrollTrigger: { trigger: title, start: 'top 20%', end: 'bottom top', scrub: 1 },
+                },
+              );
+
             gsap
-              .timeline({ delay: 0.2 })
+              .timeline({ delay: 0.2, onComplete: drift })
               .from(split.chars, {
                 yPercent: 110,
                 fontWeight: 100,
@@ -41,15 +57,6 @@ export default function Showroom() {
                 stagger: { each: 0.05, from: 'center' },
               })
               .from(q('[data-fade]'), { y: 20, autoAlpha: 0, stagger: 0.07 }, '-=0.9');
-
-            // Title thins out and drifts as you walk into the rooms
-            gsap.to(split.chars, {
-              fontWeight: 100,
-              yPercent: (i) => (i % 2 ? -18 : 18),
-              ease: 'none',
-              stagger: { each: 0.02, from: 'center' },
-              scrollTrigger: { trigger: title, start: 'top 20%', end: 'bottom top', scrub: 1 },
-            });
 
             // Rooms: each one slides in, its prints rise at their own pace
             q('[data-room]').forEach((room) => {
@@ -182,7 +189,7 @@ export default function Showroom() {
               </span>
             </span>
             <span data-room-fan className={styles.roomFan}>
-              <Fan pieces={room.pieces.slice(0, 3)} spread={hover === i} sizes="(max-width: 760px) 50vw, 22vw" />
+              <Fan pieces={room.cover} spread={hover === i} sizes="(max-width: 760px) 50vw, 22vw" />
             </span>
           </button>
         ))}
