@@ -1,6 +1,6 @@
 'use client';
 
-import { gsap, ScrollSmoother, ScrollTrigger, useGSAP, fontsReady, MOTION_OK } from '@/lib/gsap';
+import { gsap, ScrollSmoother, ScrollTrigger, useGSAP, fontsReady, scrollToTarget, MOTION_OK } from '@/lib/gsap';
 
 export default function SmoothScroll() {
   useGSAP(() => {
@@ -18,7 +18,13 @@ export default function SmoothScroll() {
     // Sections build their ScrollTriggers once fonts load; re-measure after all of them.
     let live = true;
     fontsReady().then(() => {
-      requestAnimationFrame(() => live && ScrollTrigger.refresh());
+      requestAnimationFrame(() => {
+        if (!live) return;
+        ScrollTrigger.refresh();
+        // Arriving from another page on a hash link (e.g. /#work): jump to it once layout is final
+        const { hash } = window.location;
+        if (hash.length > 1 && document.querySelector(hash)) scrollToTarget(hash, false);
+      });
     });
     return () => {
       live = false;

@@ -1,0 +1,165 @@
+.gallery {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  background:
+    radial-gradient(ellipse 60% 55% at 50% 42%, rgb(249 246 234 / 0.09), transparent 70%),
+    var(--ink);
+  color: var(--paper);
+  overflow: hidden;
+}
+
+.bar,
+.foot {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 20px var(--gutter);
+}
+
+.counter {
+  font-variant-numeric: tabular-nums;
+}
+
+.close:hover,
+.navBtn:hover:not(:disabled) {
+  color: var(--accent);
+}
+
+.viewport {
+  position: relative;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  perspective: 1400px;
+  cursor: grab;
+  touch-action: pan-y;
+  user-select: none;
+}
+
+.viewport:active {
+  cursor: grabbing;
+}
+
+.track {
+  display: flex;
+  align-items: flex-start;
+  gap: clamp(40px, 9vw, 160px);
+  width: max-content;
+}
+
+.piece {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.frame {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  border-radius: 4px;
+  box-shadow:
+    0 40px 60px -30px rgb(0 0 0 / 0.9),
+    0 0 0 1px rgb(249 246 234 / 0.06);
+}
+
+.frame img {
+  pointer-events: none;
+}
+
+.placard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  text-align: center;
+  opacity: 0.85;
+}
+
+.placardTitle {
+  font-weight: 500;
+  font-size: 1.1rem;
+}
+
+.nav {
+  display: flex;
+  gap: 24px;
+}
+
+.navBtn:disabled {
+  opacity: 0.3;
+  cursor: default;
+}
+
+.progressTrack {
+  flex: 1;
+  max-width: 320px;
+  height: 2px;
+  background: rgb(249 246 234 / 0.15);
+}
+
+.progress {
+  display: block;
+  height: 100%;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: left center;
+}
+
+.hint {
+  opacity: 0.6;
+}
+
+/* Detail view: the piece taken off the wall */
+.detail {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  visibility: hidden;
+}
+
+.detailBg {
+  position: absolute;
+  inset: 0;
+  background: rgb(1 1 1 / 0.94);
+  cursor: zoom-out;
+}
+
+.detailBox {
+  position: relative;
+  max-height: 80svh;
+  overflow: hidden;
+  border-radius: 4px;
+  pointer-events: none;
+}
+
+.detailCaption {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  pointer-events: none;
+}
+
+@media (max-width: 760px) {
+  .hint {
+    display: none;
+  }
+
+  .progressTrack {
+    max-width: none;
+  }
+}

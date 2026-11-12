@@ -3,8 +3,8 @@
 import { useRef } from 'react';
 import { gsap, useGSAP, SCRAMBLE_CHARS } from '@/lib/gsap';
 
-// Link whose label re-decodes itself on hover.
-export default function ScrambleLink({ text, children, onPointerEnter, ...rest }) {
+// Link whose label re-decodes itself on hover. `as` swaps the anchor for a link component (e.g. TransitionLink).
+export default function ScrambleLink({ as: Tag = 'a', text, children, onPointerEnter, ...rest }) {
   const root = useRef(null);
   const { contextSafe } = useGSAP({ scope: root });
 
@@ -20,9 +20,9 @@ export default function ScrambleLink({ text, children, onPointerEnter, ...rest }
   });
 
   return (
-    <a ref={root} {...rest} onPointerEnter={scramble}>
+    <Tag ref={root} {...rest} onPointerEnter={scramble}>
       <span data-label>{text}</span>
       {children}
-    </a>
+    </Tag>
   );
 }

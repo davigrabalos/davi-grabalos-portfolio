@@ -1,4 +1,5 @@
 import './globals.css';
+import { Curtain } from '@/components/PageTransition';
 
 export const metadata = {
   title: 'Davi Grabalos — Software Developer, Product Engineer, UI/UX',
@@ -17,7 +18,10 @@ export default function RootLayout({ children }) {
           rel="stylesheet"
         />
       </head>
-      <body>{children}</body>
+      <body>
+        {children}
+        <Curtain />
+      </body>
     </html>
   );
 }

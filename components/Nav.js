@@ -1,14 +1,18 @@
 'use client';
 
 import { useRef } from 'react';
-import { gsap, ScrollTrigger, useGSAP, scrollToTarget, MOTION_OK } from '@/lib/gsap';
+import { gsap, ScrollTrigger, useGSAP, MOTION_OK } from '@/lib/gsap';
 import ScrambleLink from './ScrambleLink';
+import TransitionLink from './PageTransition';
 import styles from './Nav.module.css';
 
+// Absolute hrefs so the same nav works on every page: hash links scroll on the home page
+// and play the page transition from anywhere else.
 const links = [
-  { label: 'Work', href: '#work' },
-  { label: 'Background', href: '#background' },
-  { label: 'Contact', href: '#contact' },
+  { label: 'Work', href: '/#work' },
+  { label: 'Showroom', href: '/showroom' },
+  { label: 'Background', href: '/#background' },
+  { label: 'Contact', href: '/#contact' },
 ];
 
 export default function Nav() {
@@ -50,18 +54,13 @@ export default function Nav() {
     });
   });
 
-  const go = (e, href) => {
-    e.preventDefault();
-    scrollToTarget(href);
-  };
-
   return (
     <>
       <div ref={bar} className={styles.progress} aria-hidden />
       <header ref={nav} className={styles.nav}>
-        <a href="#top" className={styles.logo} onClick={(e) => go(e, '#top')} aria-label="Back to top">
+        <TransitionLink href="/#top" label="Portfolio" className={styles.logo} aria-label="Davi Grabalos, home">
           DG
-        </a>
+        </TransitionLink>
         <span className={`label ${styles.status}`}>
           <span className={styles.dot} aria-hidden />
           Available
@@ -70,10 +69,11 @@ export default function Nav() {
           {links.map((l) => (
             <ScrambleLink
               key={l.href}
+              as={TransitionLink}
               href={l.href}
+              label={l.label}
               text={l.label}
               className={`label ${styles.link}`}
-              onClick={(e) => go(e, l.href)}
             />
           ))}
         </nav>

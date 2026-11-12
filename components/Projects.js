@@ -1,9 +1,12 @@
 'use client';
 
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import { gsap, ScrollTrigger, useGSAP, MOTION_OK, FINE_POINTER } from '@/lib/gsap';
 import { projects } from '@/lib/content';
+import { rooms, pieceCount, featured } from '@/lib/showroom';
 import SplitHeading from './SplitHeading';
+import TransitionLink from './PageTransition';
+import Fan from './Fan';
 import styles from './Projects.module.css';
 
 const pad = (n) => String(n).padStart(2, '0');
@@ -11,6 +14,7 @@ const pad = (n) => String(n).padStart(2, '0');
 export default function Projects() {
   const root = useRef(null);
   const follow = useRef(null);
+  const [fanOpen, setFanOpen] = useState(false);
 
   const { contextSafe } = useGSAP(
     () => {
@@ -25,6 +29,23 @@ export default function Projects() {
           once: true,
           onEnter: (batch) =>
             gsap.to(batch, { y: 0, autoAlpha: 1, duration: 1, stagger: 0.1, ease: 'expo.out' }),
+        });
+
+        // Showroom entrance opens up like a door as it scrolls in, and its prints rise into the band
+        const door = q('[data-showroom]');
+        gsap.fromTo(
+          door,
+          { clipPath: 'inset(0% 12% 0% 12% round 48px)' },
+          {
+            clipPath: 'inset(0% 0% 0% 0% round 20px)',
+            ease: 'none',
+            scrollTrigger: { trigger: door, start: 'top 95%', end: 'top 45%', scrub: 1 },
+          },
+        );
+        gsap.from(q('[data-showroom-fan]'), {
+          yPercent: 35,
+          ease: 'none',
+          scrollTrigger: { trigger: door, start: 'top bottom', end: 'bottom 60%', scrub: 1 },
         });
       });
 
@@ -74,6 +95,12 @@ export default function Projects() {
     gsap.to(row.querySelector('[data-link]'), { color: '#f9f6ea', duration: 0.3, overwrite: 'auto' });
     gsap.to(row.querySelector('[data-title]'), { x: 24, duration: 0.5, ease: 'expo.out', overwrite: 'auto' });
     gsap.to(row.querySelector('[data-arrow]'), { rotation: -45, duration: 0.5, ease: 'expo.out', overwrite: 'auto' });
+  });
+
+  const hoverShowroom = contextSafe((on) => {
+    setFanOpen(on);
+    gsap.to('[data-showroom-arrow]', { x: on ? 12 : 0, duration: 0.5, ease: 'expo.out', overwrite: 'auto' });
+    gsap.to('[data-showroom-title]', { x: on ? 16 : 0, duration: 0.6, ease: 'expo.out', overwrite: 'auto' });
   });
 
   const leaveRow = contextSafe((e) => {
@@ -126,6 +153,38 @@ export default function Projects() {
           </li>
         ))}
       </ul>
+
+      <TransitionLink
+        href="/showroom"
+        label="Showroom"
+        data-showroom
+        className={styles.showroom}
+        onPointerEnter={() => hoverShowroom(true)}
+        onPointerLeave={() => hoverShowroom(false)}
+        onFocus={() => hoverShowroom(true)}
+        onBlur={() => hoverShowroom(false)}
+      >
+        <span className={styles.showroomText}>
+          <span className="label">
+            Visual work · {rooms.length} rooms · {pieceCount} pieces
+          </span>
+          <span data-showroom-title className={styles.showroomTitle}>
+            Design Showroom
+          </span>
+          <span className={styles.showroomLead}>
+            Posters, cover art and art direction, hung in a room of their own.
+          </span>
+          <span className={`label ${styles.showroomCta}`}>
+            Enter the showroom{' '}
+            <span data-showroom-arrow className={styles.showroomArrow}>
+              →
+            </span>
+          </span>
+        </span>
+        <span data-showroom-fan className={styles.showroomFan}>
+          <Fan pieces={featured} spread={fanOpen} sizes="(max-width: 760px) 40vw, 18vw" />
+        </span>
+      </TransitionLink>
 
       <div data-preview className={styles.preview} aria-hidden>
         <div data-track className={styles.track}>

@@ -1,0 +1,16 @@
+.fan {
+  display: grid;
+  place-items: center;
+}
+
+.card {
+  position: relative;
+  grid-area: 1 / 1;
+  width: var(--fan-card, 42%);
+  overflow: hidden;
+  border-radius: 6px;
+  transform-origin: 50% 110%;
+  box-shadow:
+    0 24px 40px -24px rgb(1 1 1 / 0.6),
+    0 2px 6px rgb(1 1 1 / 0.2);
+}

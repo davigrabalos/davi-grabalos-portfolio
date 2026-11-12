@@ -1,0 +1,21 @@
+.curtain {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: grid;
+  place-items: center;
+  background: var(--ink);
+  color: var(--paper);
+  /* GSAP owns the transform; hidden until a transition raises it */
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.label {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(3rem, 12vw, 12rem);
+  line-height: 1;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
